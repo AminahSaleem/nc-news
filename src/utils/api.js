@@ -24,11 +24,28 @@ export async function singleArticle(id) {
 export async function getCommentsByArticle(id){
     return Api.get(`/api/articles/${id}/comments`)
     .then((response) => {
-        console.log(response)
         return response.data.comments
     })
     .catch((error) => {
 
     })
+}
+
+export async function articleVotes(id, typeOfVote) {
+    return Api.post(`/api/articles/${id}/vote`, {typeOfVote})
+    .then((response) => {
+        return response.data.comments.votes
+    })
+    .catch((error) =>{
+
+    })
+}
+
+export async function increaseVote(id) {
+    return articleVotes(id, 'upvote')
+}
+
+export async function decreaseVote(id) {
+    return articleVotes(id, 'downvote')
 }
 

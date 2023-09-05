@@ -28,7 +28,7 @@ const AllArticles = () => {
                 {articles.map((article) => { 
                     return <div key={article.title}>
                      <h2>
-                        <Link to={`/articles/${article.id}`}>{article.title}</Link>
+                        <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
                         </h2>
                      <img src={article.article_img_url} alt={article.title}/>
                      <p>{article.author}</p>

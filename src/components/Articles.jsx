@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import { getAllArticles } from '../utils/api'
+import { Link } from 'react-router-dom'
 
 const AllArticles = () => {
     const [articles, setArticles] = useState([])
@@ -10,16 +11,11 @@ const AllArticles = () => {
     useEffect(() => {
         setLoading(true)
         setError(false)
-        axios.get('https://aminah-api.onrender.com/api/articles')
-        .then((response) => {
-            setArticles(response.data.articles)
+        getAllArticles()
+        .then((data) => {
+            setArticles(data)
             setLoading(false)
         })
-        .catch((error) => {
-            console.log(error)
-            setLoading(false)
-            setError(true)
-          })
     }, [])
 
     if (loading) return <p>Loading....</p>;
@@ -27,11 +23,15 @@ const AllArticles = () => {
     if (error) return <p>Whoops, it all went wrong!!!</p>;
 
     return (
-        <div>
+        <div className="AllArticles">
             <h1>All Articles</h1>
                 {articles.map((article) => { 
-                    return <div key={article.id}>
-                     <h2>{article.title}</h2>
+                    return <div key={article.title}>
+                     <h2>
+                        <Link to={`/articles/${article.id}`}>{article.title}</Link>
+                        </h2>
+                     <img src={article.article_img_url} alt={article.title}/>
+                     <p>{article.author}</p>
                      </div>
                 })}
         </div>

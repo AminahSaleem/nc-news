@@ -15,9 +15,20 @@ export async function getAllArticles() {
 export async function singleArticle(id) {
     return Api.get(`/api/articles/${id}`)
     .then((response) => {
-        console.log(response.data)
         return response.data.article
     })
     .catch((error) => {
     })
 }
+
+export async function getCommentsByArticle(id){
+    return Api.get(`/api/articles/${id}/comments`)
+    .then((response) => {
+        console.log(response)
+        return response.data.comments
+    })
+    .catch((error) => {
+
+    })
+}
+

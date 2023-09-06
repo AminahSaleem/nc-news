@@ -27,25 +27,18 @@ export async function getCommentsByArticle(id){
         return response.data.comments
     })
     .catch((error) => {
-
     })
 }
 
-export async function articleVotes(id, typeOfVote) {
-    return Api.post(`/api/articles/${id}/vote`, {typeOfVote})
-    .then((response) => {
-        return response.data.comments.votes
+
+export function updateVote(id, inc_votes) {
+    return Api.patch(`/api/articles/${id}`, {
+      inc_votes: inc_votes === 'upvote' ? 1 : -1
     })
-    .catch((error) =>{
-
-    })
-}
-
-export async function increaseVote(id) {
-    return articleVotes(id, 'upvote')
-}
-
-export async function decreaseVote(id) {
-    return articleVotes(id, 'downvote')
-}
+      .then((response) => {
+        return response.data.articles.votes; 
+      })
+      .catch((error) => {
+      })
+  }
 

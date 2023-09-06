@@ -2,6 +2,8 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import { getAllArticles } from '../utils/api'
 import { Link } from 'react-router-dom'
+import Votes from './Votes'
+
 
 const AllArticles = () => {
     const [articles, setArticles] = useState([])
@@ -30,8 +32,10 @@ const AllArticles = () => {
                      <h2>
                         <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
                         </h2>
-                     <img src={article.article_img_url} alt={article.title}/>
+                     <img id="article-img" src={article.article_img_url} alt={article.title}/>
                      <p>{article.author}</p>
+                     <Votes passedVote={article.votes}/>
+                    
                      </div>
                 })}
         </div>

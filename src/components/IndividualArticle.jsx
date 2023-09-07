@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Votes from './Votes'
 
 
+
 const IndividualArticle = () => {
     const { id } = useParams()
     const [article, setArticle] = useState({})
@@ -40,7 +41,8 @@ const IndividualArticle = () => {
             <p>{article.body}</p>
             <Votes passedVote={article.votes}/>
             <Link to={`/articles/${id}/comments`}>Comments</Link>
-            
+    
+
         </div>
     )
 }

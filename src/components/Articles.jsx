@@ -35,7 +35,7 @@ const AllArticles = () => {
                      <img id="article-img" src={article.article_img_url} alt={article.title}/>
                      <p>{article.author}</p>
                      <Votes passedVote={article.votes}/>
-                    
+
                      </div>
                 })}
         </div>

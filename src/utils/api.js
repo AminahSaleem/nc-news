@@ -30,7 +30,6 @@ export async function getCommentsByArticle(id){
     })
 }
 
-
 export function updateVote(id, inc_votes) {
     return Api.patch(`/api/articles/${id}`, {
       inc_votes: inc_votes === 'upvote' ? 1 : -1
@@ -42,3 +41,27 @@ export function updateVote(id, inc_votes) {
       })
   }
 
+export const postComment = (id, comment, username) => {
+  return Api.post(`/api/articles/${id}/comments`, comment)
+  .then((response)=> {
+    console.log(response)
+    return response.data.comment
+  })
+  .catch((error)=>{
+
+  })
+}
+
+export const getUsers = () => {
+  return Api.get(`/api/users/`)
+  .then((response) => {
+    return response.data.users
+  })
+  .catch((error) => {
+
+  })
+}
+
+export const signIn = (username) => {
+  return Api.get(`/api/users/${username}`)
+}

@@ -2,8 +2,9 @@ import axios from 'axios'
 
 const Api = axios.create({ baseURL: "https://aminahs-api.onrender.com"})
 
-export async function getAllArticles() {
-    return Api.get('/api/articles')
+export async function getAllArticles(topic) {
+  const params = topic ? {topic} : {}
+    return Api.get('/api/articles', {params})
     .then((response) => {
         return response.data.articles
     })
@@ -44,7 +45,6 @@ export function updateVote(id, inc_votes) {
 export const postComment = (id, comment, username) => {
   return Api.post(`/api/articles/${id}/comments`, comment)
   .then((response)=> {
-    console.log(response)
     return response.data.comment
   })
   .catch((error)=>{

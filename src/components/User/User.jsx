@@ -21,7 +21,7 @@ const User = () => {
     },[])
 
     if (loading) return <p>Loading users...</p>
-    if (error) return <p>Unable to load comments</p>
+    if (error) return <p>Unable to load users</p>
 
 return (
     <div>

@@ -7,6 +7,7 @@ import IndividualArticle from './components/IndividualArticle'
 import Comments from './components/Comments'
 import User from "./components/User/User"
 import Navigation from "./components/Navigation"
+import Topics from './components/Topics'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/articles/:id" element={< IndividualArticle />}></Route>
           <Route path="/articles/:id/comments" element={< Comments />}></Route>
           <Route path="/users" element={<User />}></Route>
+          <Route path="/topics/:topic" element={<Topics />}></Route>
           </Routes>
           </Router>
   

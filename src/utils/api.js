@@ -2,16 +2,22 @@ import axios from 'axios'
 
 const Api = axios.create({ baseURL: "https://aminahs-api.onrender.com"})
 
-export async function getAllArticles(topic) {
-  const params = topic ? {topic} : {}
-    return Api.get('/api/articles', {params})
+export const getAllArticles = (topic, sort_by = '' , order = 'desc') => {
+  const validSortOptions = ['created_at', 'votes', 'comment_count']
+
+  if (!validSortOptions.includes(sort_by)) {
+    throw new Error('Invalid sort_by option')
+  }
+  const params = { topic, sort_by, order }
+  return Api.get(`api/articles`, { params })
     .then((response) => {
-        return response.data.articles
+      return response.data.articles
     })
     .catch((error) => {
-
+      throw error
     })
 }
+
 
 export async function singleArticle(id) {
     return Api.get(`/api/articles/${id}`)
@@ -53,7 +59,7 @@ export const postComment = (id, comment, username) => {
 }
 
 export const getUsers = () => {
-  return Api.get(`/api/users/`)
+  return Api.get(`/api/users`)
   .then((response) => {
     return response.data.users
   })
@@ -63,5 +69,10 @@ export const getUsers = () => {
 }
 
 export const signIn = (username) => {
-  return Api.get(`/api/users/${username}`)
+  return Api.post(`/api/login`,{username})
+  .then((response) => {
+    return response.data.users
+  })
+  .catch((error)=>{
+  })
 }

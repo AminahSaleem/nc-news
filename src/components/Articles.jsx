@@ -1,45 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { getAllArticles } from '../utils/api';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Votes from './Votes';
 
 const AllArticles = ({ selectedTopic }) => {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [articles, setArticles] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const sortCriteria = searchParams.get('sort_by') || 'created_at'
+  const sortOrder = searchParams.get('order') || 'desc'
 
   useEffect(() => {
-    setLoading(true);
-    setError(false);
+    setLoading(true)
+    setError(false)
 
-    getAllArticles(selectedTopic) 
+    getAllArticles(selectedTopic, sortCriteria, sortOrder)
       .then((data) => {
-        setArticles(data);
-        setLoading(false);
+        setArticles(data)
+        console.log(data)
+        setLoading(false)
       })
       .catch((err) => {
-        console.error('Error fetching articles:', err);
-        setError(true);
-        setLoading(false);
+        setError(true)
+        setLoading(false)
       });
-  }, [selectedTopic]);
+  }, [selectedTopic, sortCriteria, sortOrder, searchParams])
+  console.log(sortCriteria)
 
-  if (loading) return <p>Loading....</p>;
+  const toggleSorting = (newSortCriteria) => {
+    if (sortCriteria === newSortCriteria) {
+      const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+      setSearchParams({ sort_by: newSortCriteria, order: newOrder })
+    } else {
+      setSearchParams({ sort_by: newSortCriteria, order: 'desc' })
+      console.log(toggleSorting)
+    }
+  };
 
-  if (error) return <p>Whoops, it all went wrong!!!</p>;
+  if (loading) return <p>Loading....</p>
+
+  if (error) return <p>Whoops, it all went wrong!!!</p>
 
   return (
     <div className="AllArticles">
       <div>
-      <Link to="/topics/coding">
-        <button>Coding</button>
+      <h2>Topics</h2>
+        <Link to="/topics/coding">
+          <button>Coding</button>
         </Link>
         <Link to="/topics/cooking">
-        <button>Cooking</button>
+          <button>Cooking</button>
         </Link>
         <Link to="/topics/football">
-        <button>Football</button>
+          <button>Football</button>
         </Link>
+      </div>
+      <div>
+        <h2>Sort by:</h2>
+        <button onClick={() => toggleSorting('created_at')}>Date</button>
+        <button onClick={() => toggleSorting('votes')}>Votes</button>
+        <button onClick={() => toggleSorting('comment_count')}>Comment Count</button>
       </div>
       {articles.map((article) => {
         return (
@@ -51,10 +72,10 @@ const AllArticles = ({ selectedTopic }) => {
             <p>{article.author}</p>
             <Votes passedVote={article.votes} />
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 export default AllArticles;

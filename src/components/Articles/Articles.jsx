@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAllArticles } from '../utils/api';
+import { getAllArticles } from '../../utils/api';
 import { Link, useSearchParams } from 'react-router-dom';
-import Votes from './Votes';
 
 const AllArticles = ({ selectedTopic }) => {
   const [articles, setArticles] = useState([])
@@ -18,7 +17,6 @@ const AllArticles = ({ selectedTopic }) => {
     getAllArticles(selectedTopic, sortCriteria, sortOrder)
       .then((data) => {
         setArticles(data)
-        console.log(data)
         setLoading(false)
       })
       .catch((err) => {
@@ -26,7 +24,7 @@ const AllArticles = ({ selectedTopic }) => {
         setLoading(false)
       });
   }, [selectedTopic, sortCriteria, sortOrder, searchParams])
-  console.log(sortCriteria)
+
 
   const toggleSorting = (newSortCriteria) => {
     if (sortCriteria === newSortCriteria) {
@@ -34,9 +32,9 @@ const AllArticles = ({ selectedTopic }) => {
       setSearchParams({ sort_by: newSortCriteria, order: newOrder })
     } else {
       setSearchParams({ sort_by: newSortCriteria, order: 'desc' })
-      console.log(toggleSorting)
     }
   };
+  
 
   if (loading) return <p>Loading....</p>
 
@@ -70,7 +68,6 @@ const AllArticles = ({ selectedTopic }) => {
             </h2>
             <img id="article-img" src={article.article_img_url} alt={article.title} />
             <p>{article.author}</p>
-            <Votes passedVote={article.votes} />
           </div>
         )
       })}

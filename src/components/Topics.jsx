@@ -1,5 +1,5 @@
 import React from 'react';
-import Articles from './Articles';
+import Articles from './Articles/Articles';
 import { useParams } from 'react-router-dom';
 
 function Topics() {

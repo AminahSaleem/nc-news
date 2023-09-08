@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { getCommentsByArticle } from '../utils/api';
+import { getCommentsByArticle } from '../../utils/api';
 import {useParams} from 'react-router-dom'
 import NewComment from './AddComment';
-import {UserContext} from './User/UserContext';
-import { deleteComment } from '../utils/api';
+import {UserContext} from '../User/UserContext';
+import { deleteComment } from '../../utils/api';
 
 const Comments = () => {
   const [comments, setComments] = useState([])

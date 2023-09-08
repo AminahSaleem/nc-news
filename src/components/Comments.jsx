@@ -3,6 +3,7 @@ import { getCommentsByArticle } from '../utils/api';
 import {useParams} from 'react-router-dom'
 import NewComment from './AddComment';
 import {UserContext} from './User/UserContext';
+import { deleteComment } from '../utils/api';
 
 const Comments = () => {
   const [comments, setComments] = useState([])
@@ -24,16 +25,25 @@ const Comments = () => {
         setError(true);
       })
   }, [id])
+
   
   const updateComments = (additionalComment) => {
     setComments((currentComments) => {
       return [additionalComment, ...currentComments]
     })
   }
-
+  const handleDelete = (id) => {
+    deleteComment(id)
+      .then(() => {
+        setComments((currentComments) =>
+         currentComments.filter((comment) => comment.comment_id !== id)
+        );
+      })
+    }
   if (loading) return <p>Loading comments....</p>
 
   if (error) return <p>Unable to load comments.</p>
+
 
 
   return (
@@ -50,6 +60,11 @@ const Comments = () => {
             <p>{comment.body}</p>
             <p>Author: {comment.author}</p>
             <p>Commented: {comment.created_at}</p>
+            {username === comment.author && (
+              <button onClick={() => handleDelete(comment.comment_id)}>
+                Delete
+              </button>
+            )}
 
         </div>
     })}

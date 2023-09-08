@@ -76,3 +76,10 @@ export const signIn = (username) => {
   .catch((error)=>{
   })
 }
+
+export const deleteComment = (id) => {
+  return Api.delete(`/api/comments/${id}`)
+  .then((response)=>{
+    console.log('deleted', response.data)
+  })
+}

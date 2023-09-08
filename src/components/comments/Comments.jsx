@@ -33,11 +33,11 @@ const Comments = () => {
     })
   }
   const handleDelete = (id) => {
-    deleteComment(id)
-      .then(() => {
         setComments((currentComments) =>
          currentComments.filter((comment) => comment.comment_id !== id)
         );
+        deleteComment(id)
+      .then(() => {
       })
     }
   if (loading) return <p>Loading comments....</p>

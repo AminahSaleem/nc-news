@@ -61,3 +61,280 @@ height:auto;
 .asc.active .up-arrow {
   transform: rotate(180deg);
 }
+
+.AllArticles {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.AllArticles h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.AllArticles button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: rgb(148, 138, 140);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.AllArticles div:nth-child(2) {
+  margin-top: 20px;
+}
+
+.AllArticles button.asc {
+  background-color: b;
+}
+
+.AllArticles button.asc.active {
+  background-color: #c1839f;
+}
+
+.AllArticles div:not(:first-child) {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.AllArticles h2 a {
+  text-decoration: none;
+  color: grey;
+}
+
+.AllArticles p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+#article-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.IndividualArticle {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.IndividualArticle h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.IndividualArticle p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.IndividualArticle img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+
+.IndividualArticle .error-message {
+  color: #ff0000;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+.IndividualArticle a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  background-color: #087e8b;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+
+.IndividualArticle .Votes {
+  margin-top: 20px;
+}
+
+
+.IndividualArticle .loading-message {
+  font-size: 16px;
+}
+.CommentAdder {
+  margin-top: 20px;
+}
+
+.CommentAdder label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.CommentAdder textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.CommentAdder button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #087e8b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.App h1 {
+  background-color: #087e8b;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+nav {
+  background-color: darkgrey;
+  text-align: center;
+  padding: 10px;
+}
+
+nav button {
+  background-color: #087e8b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.Home {
+  padding: 20px;
+}
+
+.AllArticles {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.AllArticles h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.AllArticles button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #087e8b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.IndividualArticle {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.IndividualArticle h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.IndividualArticle p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+
+.commentsById-div {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.commentsCard-div {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.commentsCard-div h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.commentsCard-div button {
+  padding: 8px 16px;
+  background-color: #087e8b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.CommentAdder {
+  margin-top: 20px;
+}
+
+.CommentAdder label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.CommentAdder textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.CommentAdder button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #087e8b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

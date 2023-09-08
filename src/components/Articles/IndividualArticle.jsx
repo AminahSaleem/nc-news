@@ -1,10 +1,8 @@
 import {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
-import { singleArticle } from '../utils/api'
+import { singleArticle } from '../../utils/api'
 import { Link } from 'react-router-dom'
-import Votes from './Votes'
-
-
+import Votes from '../Votes'
 
 const IndividualArticle = () => {
     const { id } = useParams()
@@ -12,13 +10,18 @@ const IndividualArticle = () => {
     const [loading, setLoading]= useState(false)
     const [error, setError] = useState(false)
 
+
     useEffect(() => {
         setLoading(true)
         setError(false)
 
         singleArticle(id)
         .then((data) => {
+            if (!data){
+                setError(true)
+            } else {
             setArticle(data)
+            }
             setLoading(false)
         })
         .catch((error) => {
@@ -26,10 +29,11 @@ const IndividualArticle = () => {
         })
         
     }, [id])
+
     
     if (loading) return <p>Loading....</p>;
 
-    if (error) return <p>Whoops, it all went wrong!!!</p>;
+    if (error) return <p>Whoops, something went wrong when finding the article !</p>;
 
     return(
         <div>

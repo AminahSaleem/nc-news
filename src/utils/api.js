@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const Api = axios.create({ baseURL: "https://aminahs-api.onrender.com"})
 
-export const getAllArticles = (topic, sort_by = '' , order = 'desc') => {
+export const getAllArticles = (topic, sort_by , order = 'desc') => {
   const validSortOptions = ['created_at', 'votes', 'comment_count']
 
   if (!validSortOptions.includes(sort_by)) {
@@ -80,6 +80,6 @@ export const signIn = (username) => {
 export const deleteComment = (id) => {
   return Api.delete(`/api/comments/${id}`)
   .then((response)=>{
-    console.log('deleted', response.data)
+    return response.data
   })
 }

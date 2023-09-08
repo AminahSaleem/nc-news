@@ -1,4 +1,4 @@
-import AllArticles from "./Articles"
+import AllArticles from "./Articles/Articles"
 
 function Home(){
   

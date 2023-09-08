@@ -56,9 +56,27 @@ const AllArticles = ({ selectedTopic }) => {
       </div>
       <div>
         <h2>Sort by:</h2>
-        <button onClick={() => toggleSorting('created_at')}>Date</button>
-        <button onClick={() => toggleSorting('votes')}>Votes</button>
-        <button onClick={() => toggleSorting('comment_count')}>Comment Count</button>
+        <button
+          className={`asc ${sortCriteria === 'created_at' ? 'active' : ''}`}
+          onClick={() => toggleSorting('created_at')}
+        >
+          Date
+          <span className="up-arrow"></span>
+        </button>
+        <button
+          className={`asc ${sortCriteria === 'votes' ? 'active' : ''}`}
+          onClick={() => toggleSorting('votes')}
+        >
+          Votes
+          <span className="up-arrow"></span> 
+        </button>
+        <button
+          className={`asc ${sortCriteria === 'comment_count' ? 'active' : ''}`}
+          onClick={() => toggleSorting('comment_count')}
+        >
+          Comment Count
+          <span className="up-arrow"></span> 
+        </button>
       </div>
       {articles.map((article) => {
         return (

@@ -45,3 +45,19 @@
 width:100%;
 height:auto;
 }
+
+.up-arrow {
+  background-image: url('https://icon2.cleanpng.com/20180203/avq/kisspng-chopsticks-tableware-clip-art-up-arrow-png-transparent-image-5a759b4b96ff98.2627420215176569076185.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 20px; 
+  height: 20px;
+  display: inline-block; 
+  vertical-align: middle;
+  transition: transform 0.3s ease; 
+}
+
+.asc.active .up-arrow {
+  transform: rotate(180deg);
+}

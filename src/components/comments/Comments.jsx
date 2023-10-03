@@ -7,7 +7,7 @@ import { deleteComment } from '../../utils/api';
 
 const Comments = () => {
   const [comments, setComments] = useState([])
-  const {username, setUsername} = useContext(UserContext)
+  const {user, setUser} = useContext(UserContext)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const {id} = useParams()
@@ -43,9 +43,7 @@ const Comments = () => {
   if (loading) return <p>Loading comments....</p>
 
   if (error) return <p>Unable to load comments.</p>
-
-
-
+console.log(comments)
   return (
    <div className='commentsById-div'>
       <NewComment 
@@ -53,14 +51,14 @@ const Comments = () => {
         updateComments(comment)
       }}
        id={id} 
-       username={username} />
+       user={user} />
     {comments.map((comment) => {
         return <div key={comment.comment_id} className='commentsCard-div'>
             <h2>Comments:</h2>
             <p>{comment.body}</p>
             <p>Author: {comment.author}</p>
             <p>Commented: {comment.created_at}</p>
-            {username === comment.author && (
+            {user === comment.author && (
               <button onClick={() => handleDelete(comment.comment_id)}>
                 Delete
               </button>

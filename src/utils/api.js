@@ -68,15 +68,6 @@ export const getUsers = () => {
   })
 }
 
-export const signIn = (username) => {
-  return Api.post(`/api/login`,{username})
-  .then((response) => {
-    return response.data.users
-  })
-  .catch((error)=>{
-  })
-}
-
 export const deleteComment = (id) => {
   return Api.delete(`/api/comments/${id}`)
   .then((response)=>{

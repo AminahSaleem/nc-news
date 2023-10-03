@@ -1,43 +1,57 @@
-import {useState, useEffect} from 'react'
-import { getUsers } from '../../utils/api'
+import React, { useState, useEffect, useContext } from 'react';
+import { getUsers } from '../../utils/api';
+import { UserCard } from './UserCard';
+import { UserContext } from './UserContext';
 
 const User = () => {
-    const [users, setUsers]= useState([])
-    const [loading, setLoading]= useState(false)
-    const [error, setError] = useState(false)
+  const { user, setUser } = useContext(UserContext);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-    useEffect(() => {
-        setLoading(true)
-        setError(false)
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
 
-        getUsers()
-        .then((data) => {
-            setUsers(data)
-            setLoading(false)
-        })
-        .catch((error)=> {
-            setError(tue)
-        })
-    },[])
+    getUsers()
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(true);
+      });
+  }, []);
 
-    if (loading) return <p>Loading users...</p>
-    if (error) return <p>Unable to load users</p>
+  const handleLogout = () => {
+    setUser('')
+  }
 
-return (
-    <div>
-        <h2>User List</h2>
-        <ul>
-            {users.map((user) => {
-                return <li key={user.id}>
-                    <p>Name: {user.name}</p>
-                    <p>Username: {user.username}</p>
-                    <img id="user-img" src={user.avatar_url} />
-                </li>
-            })}
-        </ul>
-    </div>
-)
+  if (loading) return <p>Loading users...</p>;
+  if (error) return <p>Unable to load users</p>;
 
-}
+  return (
+    <section className="cards">
+      {users.map(({ username, name, avatar_url }) => {
+        return (
+          <section key={username}>
+            <UserCard username={username} name={name} avatar_url={avatar_url} />
+          </section>
+        );
+      })}
+      {!user ? (
+        <div>
+          <h2>Not logged in</h2>
+          <p>Please log in as a user</p>
+        </div>
+      ) : (
+        <div>
+          <h2>Logged in as: {user}</h2>
+          <button onClick={handleLogout}>Log out</button>
+        </div>
+      )}
+    </section>
+  );
+};
 
-export default User
+export default User;

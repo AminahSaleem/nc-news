@@ -5,12 +5,17 @@ import { UserContext } from "../User/UserContext"
 
 const NewComment =({id, updateComments}) => {
     const [newComment, setNewComment] = useState('')
-    const {username, setUsername} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     const [error, setError]= useState(false)
     
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        if(!user){
+            window.alert("To add a comment please log in")
+            return
+        }
 
         if (!newComment) {
             setError("Comment field is required")
@@ -18,7 +23,7 @@ const NewComment =({id, updateComments}) => {
             return
         }
 
-        const commentData = {body: newComment, username}
+        const commentData = {body: newComment, username: user}
         postComment(id, commentData)
         .then((comment)=>{
             updateComments(comment)

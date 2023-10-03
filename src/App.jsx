@@ -8,7 +8,6 @@ import Comments from './components/comments/Comments'
 import User from "./components/User/User"
 import Navigation from "./components/Navigation"
 import Topics from './components/Topics'
-import LogIn from './components/User/Login'
 import NotFound from "./components/ErrorHandling"
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
           <Route path="/articles/:id/comments" element={< Comments />}></Route>
           <Route path="/users" element={<User />}></Route>
           <Route path="/topics/:topic" element={<Topics />}></Route>
-          <Route path="/login" element={< LogIn />}></Route>
           <Route path="*" element={< NotFound />}></Route>
           </Routes>
           </Router>

@@ -9,9 +9,6 @@ function Navigation() {
             <Link to="/">
             <button>Home</button>
             </Link>
-            <Link to="/login">
-            <button>login</button>
-            </Link>
 
         </nav>
     )
